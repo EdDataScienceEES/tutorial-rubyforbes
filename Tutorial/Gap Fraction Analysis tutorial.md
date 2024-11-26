@@ -22,9 +22,9 @@ In this section, we will calculate the gap fraction, which is a measure of the o
 
 This tutorial will guide you through using the `coveR` package to analyze canopy images and calculate the gap fraction, a key metric in ecological analysis. We will explore how to load images, calculate foliage cover, and visualize the results using R. By the end of this tutorial, you will be able to analyze your own canopy data and create insightful visualizations.
 
-<center> <img src="tutorial-rubyforbes/Tutorial/Canopy Images/forest-231066_1280.jpg" alt="Original Canopy Image" style="width: 800px;"/> </center>
+<center> <img src="/Tutorial/Canopy Images/forest-231066_1280.jpg" alt="Original Canopy Image" style="width: 800px;"/> </center>
 
-<center> <img src="tutorial-rubyforbes/Tutorial/Example Binary Image/ac7a7694-1fe3-4132-9b0a-a77b760de3f8.png" alt="Binarised Canopy Image" style="width: 800px;"/> </center>
+<center> <img src="/Tutorial/Example Binary Image/ac7a7694-1fe3-4132-9b0a-a77b760de3f8.png" alt="Binarised Canopy Image" style="width: 800px;"/> </center>
 
 ### Example of Image Analysis
 
