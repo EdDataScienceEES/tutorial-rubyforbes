@@ -1,3 +1,11 @@
+### Learning Objectives
+
+By the end of this tutorial, you will be able to:
+1. Install and load the required R packages for canopy analysis.
+2. Set up an R environment to analyse canopy images.
+3. Perform foliage cover analysis using the `coveR` package.
+4. Calculate gap fraction from foliage cover.
+5. Visualise gap fraction results using a bar plot in `ggplot2`.
 ### Tutorial Aims
 
 #### <a href="#section1"> 1. Load Required Libraries and Set Up the Environment</a>
@@ -14,10 +22,14 @@ In this section, we will calculate the gap fraction, which is a measure of the o
 
 This tutorial will guide you through using the `coveR` package to analyze canopy images and calculate the gap fraction, a key metric in ecological analysis. We will explore how to load images, calculate foliage cover, and visualize the results using R. By the end of this tutorial, you will be able to analyze your own canopy data and create insightful visualizations.
 
-<a "Tutorial/Example Binary/ Image/ac7a7694-1fe3-4132-9b0a-a77b760de3f8.png" a>
-### Example of Image Analysis:
+<center> <img src="tutorial-rubyforbes/Tutorial/Canopy Images/forest-231066_1280.jpg" alt="Original Canopy Image" style="width: 800px;"/> </center>
 
-The images above show an example of the canopy analysis. The first image is a binarized version generated using the Otsu thresholding method. It converts the original image into a black-and-white representation, which helps quantify the percentage of white space. The white area represents the gap fraction, which indicates openness in the canopy, while the black areas represent foliage cover. The software uses this binary representation to calculate key metrics like foliage cover and gap fraction.
+<center> <img src="tutorial-rubyforbes/Tutorial/Example Binary Image/ac7a7694-1fe3-4132-9b0a-a77b760de3f8.png" alt="Binarised Canopy Image" style="width: 800px;"/> </center>
+
+### Example of Image Analysis
+
+The images above show an example of the canopy analysis. The first image is the original canopy image, while the second image is a binarised version generated using the Otsu thresholding method. It converts the original image into a black-and-white representation, which helps quantify the percentage of white space. The white area represents the gap fraction, which indicates openness in the canopy, while the black areas represent foliage cover. The software uses this binary representation to calculate key metrics like foliage cover and gap fraction.
+
 
 You can get all of the resources for this tutorial from <a href="https://github.com/EdDataScienceEES/tutorial-rubyforbes.git" target="_blank">this GitHub repository</a>. Clone and download the repo as a zip file, then unzip it.
 
@@ -25,20 +37,16 @@ You can get all of the resources for this tutorial from <a href="https://github.
 
 ## 1. Load Required Libraries and Set Up the Environment
 
-Before we begin, we need to make sure that the required packages are installed. Run the following commands to install the necessary packages:
+To begin this tutorial, you should open `RStudio`, create a new script by clicking on `File/ New File/ R Script`, set the working directory, and load the required packages. This ensures your R session has all the necessary components to run the analysis.
+
+Now we need to make sure that the required packages are installed. Run the following commands to install the necessary packages:
 
 ```r
 # Install Required Packages
 install.packages("devtools")
 devtools::install_gitlab("fchianucci/coveR")
 install.packages("ggplot2")
-
-# Load the libraries
-library(coveR)
-library(ggplot2)
 ```
-
-At the beginning of your tutorial, you should open `RStudio`, create a new script by clicking on `File/ New File/ R Script`, set the working directory, and load the required packages. This ensures your R session has all the necessary components to run the analysis.
 
 ```r
 # Load Required Libraries
@@ -70,12 +78,12 @@ Now that we have set up our environment, let's load and analyze the canopy image
 images <- list.files("canopy_images/", full.names = TRUE)
 print(images)  # This checks that the image files have been loaded correctly
 
-# Step 3: Analyze the First Image (Optional Step)
+# Step 3: Analyse the First Image (Optional Step)
 # Perform the foliage cover analysis on the first image to check functionality.
 result <- coveR(images[1])
 View(result)  # View the result of the first image analysis
 
-# Step 4: Analyze All Images
+# Step 4: Analyse All Images
 # Create an empty data frame to store results for all images.
 results_all <- NULL
 
@@ -98,11 +106,11 @@ View(results_all)  # This shows the data frame with all the calculated values
 
 ## 3. Calculate and Visualize Gap Fraction
 
-Before diving into the calculations and visualizations, let's briefly describe what each step of the code from lines 54 to 81 is doing:
+Before diving into the calculations and visualizations, let's briefly describe what Step 3 is doing:
 
-- **Calculate Gap Fraction (Lines 54-57)**: We calculate the gap fraction for each image by subtracting the foliage cover (`FC`) from 1. This is stored in a new column called `gap_fraction` within the `results_all` data frame.
-- **Create a Bar Plot (Lines 60-68)**: We use the `ggplot2` package to visualize the gap fraction of each image. The bar plot shows each image's gap fraction, and each bar is filled with a unique color to easily distinguish between images.
-- **Export the Results (Lines 71-75)**: Finally, we provide an optional step to export the results to a CSV file. This can be useful for saving the data for later use or further analysis.
+- **Calculate Gap Fraction **: We calculate the gap fraction for each image by subtracting the foliage cover (`FC`) from 1. This is stored in a new column called `gap_fraction` within the `results_all` data frame.
+- **Create a Bar Plot **: We use the `ggplot2` package to visualize the gap fraction of each image. The bar plot shows each image's gap fraction, and each bar is filled with a unique color to easily distinguish between images.
+- **Export the Results **: Finally, we provide an optional step to export the results to a CSV file. This can be useful for saving the data for later use or further analysis.
 
 In this section, we will calculate the gap fraction for each canopy image and visualize it using a bar plot.
 
@@ -137,11 +145,11 @@ ggplot(results_all, aes(x = id, y = gap_fraction, fill = id)) +
 - **`geom_bar()`**: Creates the bar plot, using `stat = "identity"` to plot the raw values.
 - **`fill = id`**: Ensures each bar has a different color to visually distinguish between images.
 
-### Step 7: Export the Results (Optional)
+### Step 7: Export the Results 
 If you wish to save the results for later use, you can export them as a CSV file.
 
 ```r
-# Step 7: Export the Results (Optional)
+# Step 7: Export the Results 
 # If you want to save the results, export them to a CSV file.
 write.csv(results_all, "gap_fraction_results.csv", row.names = FALSE)
 
