@@ -13,6 +13,13 @@ In this section, we will walk through loading the canopy images and running a fo
 In this section, we will calculate the gap fraction, which is a measure of the openness in the canopy (calculated as `1 - foliage cover`). We will also visualize the results using a bar plot to easily compare gap fractions across all images.
 
 This tutorial will guide you through using the `coveR` package to analyze canopy images and calculate the gap fraction, a key metric in ecological analysis. We will explore how to load images, calculate foliage cover, and visualize the results using R. By the end of this tutorial, you will be able to analyze your own canopy data and create insightful visualizations.
+<center> <img src="{{ site.baseurl }}/binarized_otsu_128.png" alt="Binarized Canopy Image" style="width: 800px;"/> </center>
+
+<center> <img src="{{ site.baseurl }}/forest_231066_1280.jpg" alt="Original Canopy Image" style="width: 800px;"/> </center>
+
+### Example of Image Analysis:
+
+The images above show an example of the canopy analysis. The first image is a binarized version generated using the Otsu thresholding method. It converts the original image into a black-and-white representation, which helps quantify the percentage of white space. The white area represents the gap fraction, which indicates openness in the canopy, while the black areas represent foliage cover. The software uses this binary representation to calculate key metrics like foliage cover and gap fraction.
 
 You can get all of the resources for this tutorial from <a href="https://github.com/EdDataScienceEES/tutorial-rubyforbes.git" target="_blank">this GitHub repository</a>. Clone and download the repo as a zip file, then unzip it.
 
