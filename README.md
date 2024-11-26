@@ -16,8 +16,8 @@ By the end of this tutorial, you will be able to:
 
 - **`Tutorial/`**: Contains all materials for the tutorial.
   - **`Canopy Images/`**: Original images for analysis.
-  - **`Example Binary/`**: Processed binary images showing canopy gaps.
-  - **`gap_fraction_analysis.Rmd`**: The R Markdown document to follow along with the tutorial.
+  - **`Example Binary Image/`**: Processed binary images showing canopy gaps.
+  - **`index.md`**: The R Markdown document to follow along with the tutorial.
   - **`gap_fraction_results.csv`**: Example of the generated results after running the analysis.
 
 
