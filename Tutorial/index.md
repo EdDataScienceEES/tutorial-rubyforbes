@@ -159,7 +159,7 @@ write.csv(results_all, "gap_fraction_results.csv", row.names = FALSE)
 ### Summary
 In this tutorial, we learned how to:
 - Set up the working environment to use the `coveR` package.
-- Analyze canopy images and calculate foliage cover.
+- Analyse canopy images and calculate foliage cover.
 - Calculate the gap fraction and create a visualization to better understand the data.
 
 Using these techniques, you can effectively analyze canopy images and present your findings in an engaging way, which is essential for ecological and environmental research.
