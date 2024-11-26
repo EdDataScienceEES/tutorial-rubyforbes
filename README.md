@@ -1,35 +1,71 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/6eRt7-90)
-# tutorial-instructions
-## Instructions for Tutorial Assignment
+# Gap Fraction Analysis Tutorial
 
-The key final assignment for the Data Science course is to create your own tutorial. Your tutorial has to communicate a specific quantitative skill - you can choose the level at which you pitch your tutorial and how advanced or introductory it is. You can create "part 2" tutorials where "part 1" is an existing Coding Club tutorial.
+Welcome to the Gap Fraction Analysis tutorial! This guide will teach you how to use R and the `coveR` package to analyze canopy images and calculate the gap fraction, which is a key metric in understanding canopy openness.
 
-You are encouraged to add your peers to your tutorial development repositories so that you can exchange feedback - remember that the best way to check if your tutorial makes sense is to have someone that is not you go through it.
+## Learning Objectives
+By the end of this tutorial, you will be able to:
+1. Install and load the required R packages for canopy analysis.
+2. Set up an R environment to analyse canopy images.
+3. Perform foliage cover analysis using the `coveR` package.
+4. Calculate gap fraction from foliage cover.
+5. Visualise gap fraction results using a bar plot in `ggplot2`.
 
-__Note that the deadline for this challenge is 12pm on 28th November 2024. Submission is via GitHub like with previous challenges, but you have to also submit a pdf version of your tutorial via Turnitin before 12pm on 28th November 2024. Your submission on GitHub will represent a repository that is also a website (the tutorial on making tutorials below explains how to turn a GitHub repo into a website) and you can just save a pdf of your website using `File/Export as pdf` when you've opened your repository website, you don't need to be separately generating a pdf through code unless you want to.__
+## Contents of This Repository
+- **`Tutorial/`**: Contains all materials for the tutorial.
+  - **`Canopy Images/`**: Original images for analysis.
+  - **`Example Binary/`**: Processed binary images showing canopy gaps.
+  - **`gap_fraction_analysis.Rmd`**: The R Markdown document to follow along with the tutorial.
+  - **`gap_fraction_results.csv`**: Example of the generated results after running the analysis.
 
-__Marking criteria:__
+## How to Get Started
+To get started with this tutorial:
+1. **Clone the Repository**:
+    ```sh
+    git clone https://github.com/EdDataScienceEES/tutorial-rubyforbes.git
+    ```
+2. **Open RStudio**: Open the `gap_fraction_analysis.Rmd` file in RStudio.
+3. **Install Required Packages**:
+    Run the following commands in RStudio to install all the required R packages:
+    ```r
+    install.packages("devtools")
+    devtools::install_gitlab("fchianucci/coveR")
+    install.packages("ggplot2")
+    ```
+4. **Run the Analysis**: Follow the tutorial in the R Markdown file to analyze the images step-by-step.
 
-•	Topic – A relevant topic and content that is appropriate for a Coding Club tutorial and relevant to the field of data science, plus appropriate for learners at a particular skill level - at least 4th year Environmental / Ecological science student. - 25%
+## Prerequisites
+- **R and RStudio**: Make sure you have R (>= 3.5) and RStudio installed.
+- **Packages**:
+  - `devtools` for installing the `coveR` package.
+  - `coveR` for canopy analysis.
+  - `ggplot2` for visualization.
 
-•	Structure – Clear and logical structure to the tutorial that is easy to navigate with clear instructions. Clear, concrete and measurable learning objectives (i.e., people can tell exactly what they are learning and when they have achieved each learning objective). - 25%
+## Tutorial Overview
+In this tutorial, you will:
+- Learn how to load and preprocess canopy images.
+- Analyse the images to compute foliage cover and gap fractions.
+- Visualise the results using bar plots.
 
-•	Reproducibility – People can do the tutorial on their own, without assistance and without needing to pay for extra software, the code works and people can easily access any data needed to complete the tutorial. - 25%
+The `coveR` package uses Otsu thresholding to convert the original images into binary form, which allows quantifying the gap fraction (the openness in the canopy). The tutorial will guide you through each step, providing real-world context for understanding why gap analysis is crucial for assessing forest health.
 
-•	Creativity – A well-illustrated, professionally designed tutorial with appropriate figures and diagrams. A creative and engaging approach to teaching the learning objectives. - 25%
+## Example Images
+Here is an example of what you will do in this tutorial:
 
-__Useful links:__
-- https://ourcodingclub.github.io/tutorials/tutorials/ - Coding Club tutorial on how to make tutorials
-- https://ourcodingclub.github.io/tutorials/ - all the other Coding Club tutorials
-- https://github.com/ourcodingclub/ourcodingclub.github.io - the repository behind the Coding Club website - here you can see the Markdown code for how the tutorials were formatted
-- https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf - markdown cheatsheet
+### Original Canopy Image
+![Original Canopy Image](Tutorial/Canopy%20Images/forest-231066_1280.jpg)
 
-__Absolute top of the class examples of tutorials made by DS students:__
-- https://ourcodingclub.github.io/tutorials/data-manip-creative-dplyr/ - Advanced data manipulation: Creative use of diverse dplyr functions by Jakub Wieczorkowski
-- https://ourcodingclub.github.io/tutorials/data-scaling/ - Transforming and scaling data by Matus Seci
-- https://ourcodingclub.github.io/tutorials/anova/ - ANOVA from A to (XY)Z by Erica Zaja
-- https://ourcodingclub.github.io/tutorials/spatial-vector-sf/ - Geospatial vector data in R with sf by Boyan Karabaliev
-- https://eddatascienceees.github.io/tutorial-assignment-beverlytan/ - Creating a repository with a clear structure by Beverly Tan
-- https://ourcodingclub.github.io/tutorials/spatial/ - Intro to Spatial Analysis in R by Maude Grenier
+### Binarised Canopy Image
+![Binarised Canopy Image](Tutorial/Example%20Binary%20Image/ac7a7694-1fe3-4132-9b0a-a77b760de3f8.png)
 
-All the other useful links we have shared with previous challenges and from the course reading - think of the tutorials you have done in the past - what did you like about those tutorials, what didn't work so well and could be improved.
+These images illustrate how the `coveR` package helps convert a regular canopy image into a binarised form to calculate the canopy gap fraction effectively.
+
+## Results
+At the end of the tutorial, you will have calculated the gap fraction for multiple canopy images, and visualised the differences using a bar plot. Example results are saved in the `gap_fraction_results.csv` file.
+
+## Feedback and Contributions
+Feel free to submit any issues you find or improvements you suggest via GitHub Issues. Contributions are welcome! If you have additional datasets or analysis ideas, consider submitting a pull request.
+
+## License
+This tutorial is licensed under the MIT License. See the `LICENSE` file for details.
+
+
