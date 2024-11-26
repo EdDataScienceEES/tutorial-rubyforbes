@@ -1,0 +1,162 @@
+<center><img src="{{ site.baseurl }}/tutheaderbl.png" alt="Img"></center>
+
+### Tutorial Aims
+
+#### <a href="#section1"> 1. Load Required Libraries and Set Up the Environment</a>
+
+#### <a href="#section2"> 2. Analyze Canopy Images Using coveR</a>
+
+#### <a href="#section3"> 3. Calculate and Visualize Gap Fraction</a>
+
+This tutorial will guide you through using the `coveR` package to analyze canopy images and calculate the gap fraction, a key metric in ecological analysis. We will explore how to load images, calculate foliage cover, and visualize the results using R. By the end of this tutorial, you will be able to analyze your own canopy data and create insightful visualizations.
+
+You can get all of the resources for this tutorial from <a href="https://github.com/EdDataScienceEES/tutorial-rubyforbes.git" target="_blank">this GitHub repository</a>. Clone and download the repo as a zip file, then unzip it.
+
+<a name="section1"></a>
+
+## 1. Load Required Libraries and Set Up the Environment
+
+At the beginning of your tutorial, you should open `RStudio`, create a new script by clicking on `File/ New File/ R Script`, set the working directory, and load the required packages. This ensures your R session has all the necessary components to run the analysis.
+
+```r
+# Load Required Libraries
+# Load the necessary packages used in the analysis.
+library(coveR)        # For canopy image analysis
+library(ggplot2)      # For data visualization
+
+# Step 1: Set the Working Directory
+# Set your working directory to the folder that contains your images. This ensures R can locate all your files correctly.
+# Set the working directory to your local directory where the data is stored
+# Replace 'your_filepath' with the path to your local folder
+setwd("your_filepath")
+```
+
+### Explanation:
+- **`library(coveR)`**: Loads the `coveR` package, which is used for analyzing canopy images.
+- **`library(ggplot2)`**: Loads `ggplot2`, a powerful data visualization package.
+- **`setwd()`**: Sets your working directory so R knows where to look for files.
+
+<a name="section2"></a>
+
+## 2. Analyze Canopy Images Using coveR
+
+Now that we have set up our environment, let's load and analyze the canopy images.
+
+```r
+# Step 2: Load Canopy Images
+# Create a list of all image files in the "canopy_images" folder.
+images <- list.files("canopy_images/", full.names = TRUE)
+print(images)  # This checks that the image files have been loaded correctly
+
+# Step 3: Analyze the First Image (Optional Step)
+# Perform the foliage cover analysis on the first image to check functionality.
+result <- coveR(images[1])
+View(result)  # View the result of the first image analysis
+
+# Step 4: Analyze All Images
+# Create an empty data frame to store results for all images.
+results_all <- NULL
+
+# Loop through all images, calculate foliage cover, and bind the results to 'results_all'.
+for (i in 1:length(images)) {
+  cv <- coveR(images[i])          # Get the foliage cover (FC) for the current image
+  results_all <- rbind(results_all, cv)  # Add the results to the data frame
+}
+
+# View all results.
+View(results_all)  # This shows the data frame with all the calculated values
+```
+
+### Explanation:
+- **`list.files()`**: Lists all files in the specified folder. Setting `full.names = TRUE` provides the complete file paths.
+- **`coveR()`**: Analyzes each image to determine the foliage cover.
+- **Loop through images**: This loop iterates over all images and binds the results into a single data frame.
+
+<a name="section3"></a>
+
+## 3. Calculate and Visualize Gap Fraction
+
+In this section, we will calculate the gap fraction for each canopy image and visualize it using a bar plot.
+
+### Step 5: Calculate Gap Fraction
+The **gap fraction** is calculated as `1 - foliage cover`. Let's add this information to our data frame.
+
+```r
+# Step 5: Calculate Gap Fraction
+# Create a new column called 'gap_fraction' in the results_all data frame that contains the gap fraction.
+# Gap fraction is calculated as 1 minus the foliage cover (FC) for each image.
+results_all$gap_fraction <- 1 - results_all$FC
+```
+
+### Step 6: Visualize the Gap Fraction for Each Image
+To effectively communicate the results, we create a bar plot where each image's gap fraction is represented by a different color.
+
+```r
+# Step 6: Visualize the Gap Fraction for Each Image
+# Create a bar plot to visualize the gap fraction for each image, using a different color for each image.
+ggplot(results_all, aes(x = id, y = gap_fraction, fill = id)) +
+  geom_bar(stat = "identity") +
+  theme_minimal() +
+  labs(title = "Gap Fraction for Each Canopy Image",
+       x = "Image ID",
+       y = "Gap Fraction") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+### Explanation:
+- **`ggplot()`**: Initializes the plot using the `results_all` data frame.
+- **`aes()`**: Maps `x`, `y`, and `fill` aesthetics to specify how data should be visualized.
+- **`geom_bar()`**: Creates the bar plot, using `stat = "identity"` to plot the raw values.
+- **`fill = id`**: Ensures each bar has a different color to visually distinguish between images.
+
+### Step 7: Export the Results (Optional)
+If you wish to save the results for later use, you can export them as a CSV file.
+
+```r
+# Step 7: Export the Results (Optional)
+# If you want to save the results, export them to a CSV file.
+write.csv(results_all, "gap_fraction_results.csv", row.names = FALSE)
+
+# This will create a CSV file named "gap_fraction_results.csv" in your current working directory.
+```
+
+### Summary
+In this tutorial, we learned how to:
+- Set up the working environment to use the `coveR` package.
+- Analyze canopy images and calculate foliage cover.
+- Calculate the gap fraction and create a visualization to better understand the data.
+
+Using these techniques, you can effectively analyze canopy images and present your findings in an engaging way, which is essential for ecological and environmental research.
+
+<hr>
+
+#### Check out our <a href="https://ourcodingclub.github.io/links/" target="_blank">Useful links</a> page where you can find loads of guides and cheatsheets.
+
+#### If you have any questions about completing this tutorial, please contact us at ourcodingclub@gmail.com
+
+#### <a href="INSERT_SURVEY_LINK" target="_blank">We would love to hear your feedback on the tutorial, whether you did it in the classroom or online!</a>
+
+<ul class="social-icons">
+	<li>
+		<h3>
+			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+		</h3>
+	</li>
+</ul>
+
+### &nbsp;&nbsp;Subscribe to our mailing list:
+<div class="container">
+	<div class="block">
+        <!-- subscribe form start -->
+		<div class="form-group">
+			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
+			<div class="form-group">
+				<input type='text' class="form-control" name='Email' placeholder="Email" required/>
+			</div>
+			<div>
+                        	<button class="btn btn-default" type='submit'>Subscribe</button>
+                    	</div>
+                	</form>
+		</div>
+	</div>
+</div>
