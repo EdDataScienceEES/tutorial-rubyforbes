@@ -12,7 +12,7 @@ By the end of this tutorial, you will be able to:
 
 This section covers how to load the required packages and set up the working environment needed for the analysis. Specifically, we will ensure all dependencies are installed, load the necessary libraries (`coveR` for canopy analysis and `ggplot2` for visualization), and set the working directory to the correct location where your data is stored.
 
-#### <a href="#section2"> 2. Analyze Canopy Images Using coveR</a>
+#### <a href="#section2"> 2. Analyse Canopy Images Using coveR</a>
 
 In this section, we will walk through loading the canopy images and running a foliage cover analysis. We'll start by listing all the images in the designated folder, then perform an initial analysis on one image as a sample, and finally loop through all the images to generate a complete dataset of foliage cover values.
 
@@ -20,7 +20,7 @@ In this section, we will walk through loading the canopy images and running a fo
 
 In this section, we will calculate the gap fraction, which is a measure of the openness in the canopy (calculated as `1 - foliage cover`). We will also visualize the results using a bar plot to easily compare gap fractions across all images.
 
-This tutorial will guide you through using the `coveR` package to analyze canopy images and calculate the gap fraction, a key metric in ecological analysis. We will explore how to load images, calculate foliage cover, and visualize the results using R. By the end of this tutorial, you will be able to analyze your own canopy data and create insightful visualizations.
+This tutorial will guide you through using the `coveR` package to analyse canopy images and calculate the gap fraction, a key metric in ecological analysis. We will explore how to load images, calculate foliage cover, and visualize the results using R. By the end of this tutorial, you will be able to analyse your own canopy data and create visualisations.
 
 <center> <img src="/Tutorial/Canopy Images/forest-231066_1280.jpg" alt="Original Canopy Image" style="width: 800px;"/> </center>
 
@@ -49,16 +49,14 @@ install.packages("ggplot2")
 ```
 
 ```r
-# Load Required Libraries
 # Load the necessary packages used in the analysis.
 library(coveR)        # For canopy image analysis
 library(ggplot2)      # For data visualization
 
 # Step 1: Set the Working Directory
-# Set your working directory to the folder that contains your images. This ensures R can locate all your files correctly.
-# Set the working directory to your local directory where the data is stored
+
 # Replace 'your_filepath' with the path to your local folder
-setwd("getwd()") # Use getwd() to see your current working directory, then adjust to your specific data location
+setwd("your_filepath") 
 ```
 
 ### Explanation:
@@ -68,9 +66,9 @@ setwd("getwd()") # Use getwd() to see your current working directory, then adjus
 
 <a name="section2"></a>
 
-## 2. Analyze Canopy Images Using coveR
+## 2. Analyse Canopy Images Using coveR
 
-Now that we have set up our environment, let's load and analyze the canopy images.
+Now that we have set up our environment, let's load and analyse the canopy images.
 
 ```r
 # Step 2: Load Canopy Images
@@ -78,8 +76,7 @@ Now that we have set up our environment, let's load and analyze the canopy image
 images <- list.files("canopy_images/", full.names = TRUE)
 print(images)  # This checks that the image files have been loaded correctly
 
-# Step 3: Analyse the First Image (Optional Step)
-# Perform the foliage cover analysis on the first image to check functionality.
+# Step 3: Analyse the First Image (Optional, but ensures the package is working before we proceed with the whole album)
 result <- coveR(images[1])
 View(result)  # View the result of the first image analysis
 
@@ -128,8 +125,8 @@ results_all$gap_fraction <- 1 - results_all$FC
 To effectively communicate the results, we create a bar plot where each image's gap fraction is represented by a different color.
 
 ```r
-# Step 6: Visualize the Gap Fraction for Each Image
-# Create a bar plot to visualize the gap fraction for each image, using a different color for each image.
+# Step 6: Visualise the Gap Fraction for Each Image
+# Create a bar plot to visualise the gap fraction for each image, using a different color for each image.
 ggplot(results_all, aes(x = id, y = gap_fraction, fill = id)) +
   geom_bar(stat = "identity") +
   theme_minimal() +
@@ -141,7 +138,7 @@ ggplot(results_all, aes(x = id, y = gap_fraction, fill = id)) +
 
 ### Explanation:
 - **`ggplot()`**: Initializes the plot using the `results_all` data frame.
-- **`aes()`**: Maps `x`, `y`, and `fill` aesthetics to specify how data should be visualized.
+- **`aes()`**: Maps `x`, `y`, and `fill` aesthetics to specify how data should be visualised.
 - **`geom_bar()`**: Creates the bar plot, using `stat = "identity"` to plot the raw values.
 - **`fill = id`**: Ensures each bar has a different color to visually distinguish between images.
 
@@ -150,7 +147,6 @@ If you wish to save the results for later use, you can export them as a CSV file
 
 ```r
 # Step 7: Export the Results 
-# If you want to save the results, export them to a CSV file.
 write.csv(results_all, "gap_fraction_results.csv", row.names = FALSE)
 
 # This will create a CSV file named "gap_fraction_results.csv" in your current working directory.
@@ -159,8 +155,8 @@ write.csv(results_all, "gap_fraction_results.csv", row.names = FALSE)
 ### Summary
 In this tutorial, we learned how to:
 - Set up the working environment to use the `coveR` package.
-- Analyze canopy images and calculate foliage cover.
-- Calculate the gap fraction and create a visualization to better understand the data.
+- Analyse canopy images and calculate foliage cover.
+- Calculate the gap fraction and create a visualisation to better understand the data.
 
-Using these techniques, you can effectively analyze canopy images and present your findings in an engaging way, which is essential for ecological and environmental research.
+Using these techniques, you can effectively analyse canopy images and present your findings in an engaging way, which is essential for ecological and environmental research.
 
