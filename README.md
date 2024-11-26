@@ -37,9 +37,12 @@ Here is an example of what you will do in this tutorial:
 
 ### Original Canopy Image
 
-
+<center> <img src="/Tutorial/Canopy Images/forest-231066_1280.jpg" alt="Original Canopy Image" style="width: 800px;"/> </center>
 
 ### Binarised Canopy Image
+
+<center> <img src="/Tutorial/Example Binary Image/ac7a7694-1fe3-4132-9b0a-a77b760de3f8.png" alt="Binarised Canopy Image" style="width: 800px;"/> </center>
+
 
 These images illustrate how the `coveR` package helps convert a regular canopy image into a binarised form to calculate the canopy gap fraction effectively.
 
